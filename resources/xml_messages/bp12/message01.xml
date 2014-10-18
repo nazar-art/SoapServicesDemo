@@ -1,0 +1,47 @@
+<env:GovTalkMessage xmlns:env="http://www.govtalk.gov.uk/CM/envelope">
+    <env:EnvelopeVersion>1000.00</env:EnvelopeVersion>
+    <env:Header>
+        <env:MessageDetails>
+            <env:Class>BT_INIS_CITS_CALCPEN</env:Class>
+            <env:Qualifier>string</env:Qualifier>
+            <env:Function>string</env:Function>
+            <env:TransactionID>string</env:TransactionID>
+            <env:AuditID>string</env:AuditID>
+            <env:CorrelationID>IDqwer324234</env:CorrelationID>
+            <env:ResponseEndPoint PollInterval="string">string</env:ResponseEndPoint>
+            <env:Transformation>string</env:Transformation>
+            <env:GatewayTest>string</env:GatewayTest>
+            <env:GatewayTimestamp>string</env:GatewayTimestamp>
+        </env:MessageDetails>
+        <env:SenderDetails>
+            <AnyElement/>
+        </env:SenderDetails>
+    </env:Header>
+    <env:GovTalkDetails>
+        <env:Keys>
+            <env:Key Type="string">string</env:Key>
+        </env:Keys>
+        <AnyElement/>
+    </env:GovTalkDetails>
+    <env:Body>
+        <document type="INIS_CITS_CALC_PENALTY">
+            <SysInfo>
+                <Guid>$guid</Guid>
+                <DateMessage>$dateMessage</DateMessage>
+                <Sender>011</Sender>
+            </SysInfo>
+            <Details>
+                <BIN>$iinBin</BIN>
+                <RNN>$rnn</RNN>
+                <KNO>$taxOrgCode</KNO>
+                <KBK>$kbk</KBK>
+                <Attr>0</Attr>
+                <StartDate>20130101</StartDate>
+                <EndDate>20131231</EndDate>
+                <AddChargeList>
+                    <charge TaxSum="800" Apply_date="$applyDate"/>
+                </AddChargeList>
+            </Details>
+        </document>
+    </env:Body>
+</env:GovTalkMessage>

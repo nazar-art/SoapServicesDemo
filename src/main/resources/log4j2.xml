@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration status="OFF" packages="core.logger">
+
+    <properties>
+        <property name="fileName">logs/soap_service.log</property>
+        <property name="filePattern">logs/$${date:yyyy-MM}/soap-service-test-%d{MM-dd-yyyy}-%i.log.gz</property>
+        <property name="layoutPattern">%d{HH:mm:ss.SSS} [%t] %-5level - %msg%n</property>
+        <property name="fileSize">5 MB</property>
+    </properties>
+
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${layoutPattern}"/>
+        </Console>
+
+        <RollingFile name="SoapServiceFile" fileName="${fileName}" filePattern="${filePattern}">
+            <PatternLayout pattern="${layoutPattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="${fileSize}"/>
+            </Policies>
+        </RollingFile>
+
+        <TestNgAppender name="SoapServiceTestNgReportAppender">
+            <PatternLayout pattern="${layoutPattern}"/>
+        </TestNgAppender>
+    </appenders>
+
+    <loggers>
+        <root level="warn">
+            <appender-ref ref="Console"/>
+        </root>
+
+        <logger name="SoapServiceLogger" level="debug" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="SoapServiceFile"/>
+            <appender-ref ref="SoapServiceTestNgReportAppender"/>
+        </logger>
+    </loggers>
+</configuration>

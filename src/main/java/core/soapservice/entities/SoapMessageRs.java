@@ -3,6 +3,7 @@ package core.soapservice.entities;
 import org.w3c.dom.Document;
 
 public class SoapMessageRs {
+
     private int statusCode;
     private String statusMessage;
     private boolean isSuccess;
