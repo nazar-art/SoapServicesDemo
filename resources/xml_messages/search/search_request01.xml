@@ -1,0 +1,36 @@
+<soapenv:Envelope xmlns="http://www.opentravel.org/OTA/2003/05"
+                  xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <OTA_AirLowFareSearchRQ EchoToken="50987" SequenceNmbr="1" Target="Production"
+                                TimeStamp="2003-11-19T19:44:10-05:00" Version="2.001"
+                                xsi:schemaLocation="http://www.opentravel.org/OTA/2003/05OTA_AirBookRQ.xsd"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <POS>
+                <TPA_Extensions>
+                    <TPA_Extension>
+                        <PromoRatesRequired Value="false"/>
+                        <UserName Value="342561"/>
+                        <UserPassword Value="1234"/>
+                        <ClearCache Value="true"/>
+                    </TPA_Extension>
+                </TPA_Extensions>
+            </POS>
+            <OriginDestinationInformation>
+                <DepartureDateTime>2015-04-13T00:00:00</DepartureDateTime>
+                <OriginLocation LocationCode="${#TestCase#From}"/>
+                <DestinationLocation LocationCode="${#TestCase#To}"/>
+            </OriginDestinationInformation>
+            <TravelPreferences>
+                <CabinPref PreferLevel="Preferred" Cabin="Economy"/>
+            </TravelPreferences>
+            <TravelerInfoSummary>
+                <AirTravelerAvail>
+                    <PassengerTypeQuantity Code="ADT" Quantity="${#TestCase#Adult}"/>
+                    <PassengerTypeQuantity Code="CHD" Quantity="${#TestCase#Child}"/>
+                    <PassengerTypeQuantity Code="INF" Quantity="${#TestCase#Infant}"/>
+                </AirTravelerAvail>
+            </TravelerInfoSummary>
+        </OTA_AirLowFareSearchRQ>
+    </soapenv:Body>
+</soapenv:Envelope>

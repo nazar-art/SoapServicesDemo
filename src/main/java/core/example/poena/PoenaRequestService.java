@@ -16,16 +16,29 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PoenaRequestService {
 
     private static final String TEMPLATE_PATH = "resources/xml_messages/bp12/message01.xml";
+    public static final org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(PoenaRequestService.class);
 
     @Inject
     @Named("poena_service")
     private HttpService poenaService;
 
     public String sendRequest(/*TaxPayer taxPayer,*/ String kbk) throws PoenaServiceException {
+        LOG.info(String.format("Generating poena message request for string: %s", kbk));
+
+        Map<String, String> replaceValues = new HashMap<>();
+        replaceValues.put("guid", "guid");
+        replaceValues.put("iinbin", "iinbin");
+        replaceValues.put("rnn", "rnn");
+        replaceValues.put("taxOrgCode", "taxOrgCode");
+        replaceValues.put("kbk", "kbk");
+        replaceValues.put("dateMessage", "dateMessage");
+        replaceValues.put("applyDate", "applyDate");
         /*Logger.operation("Generating poena message request for tax payer: {0}", taxPayer);
         OperDay operday = OperDayUtils.getCurrentOperDay();
 
@@ -42,8 +55,7 @@ public class PoenaRequestService {
         ServiceResponseMessage result;
         try {
             String template = IOUtils.readFileIntoString(TEMPLATE_PATH);
-//            Document rq = XmlUtil.parseDocument(StringUtils.replaceValues(template, replaceValues));
-            Document rq = XmlUtil.parseDocument(StringUtils.replaceValues(template, null));
+            Document rq = XmlUtil.parseDocument(StringUtils.replaceValues(template, replaceValues));
             result = poenaService.execute(HttpMethod.POST, null, rq);
         } catch (IOException e) {
             throw new PoenaServiceException("Unable to read template file: " + TEMPLATE_PATH, e);
