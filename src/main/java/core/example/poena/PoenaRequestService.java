@@ -55,6 +55,7 @@ public class PoenaRequestService {
         ServiceResponseMessage result;
         try {
             String template = IOUtils.readFileIntoString(TEMPLATE_PATH);
+//            System.out.println(StringUtils.replaceValues(template, replaceValues));
             Document rq = XmlUtil.parseDocument(StringUtils.replaceValues(template, replaceValues));
             result = poenaService.execute(HttpMethod.POST, null, rq);
         } catch (IOException e) {
