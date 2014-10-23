@@ -34,7 +34,7 @@ public class StringUtils {
     }
 
     public static List<String> replaceValues(List<String> input, Map<String, ?> map) {
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
 
         for (String line : input) {
             result.add(replaceValues(line, map));
